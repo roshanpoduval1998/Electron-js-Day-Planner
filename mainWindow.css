@@ -1,0 +1,25 @@
+body{
+    background-color: #fff;
+    -webkit-animation: random 40s infinite;
+    animation: random 40s infinite;
+}
+ul li:nth-child(odd) {
+	border: none;
+	font: 34px/4 Segoe UI, serif;
+    background-color: #fff;
+    -webkit-animation: random 40s infinite;
+    animation: random 40s infinite;
+}
+ul li:nth-child(even) {
+	border: none;
+	font: 12px/4 Segoe UI, serif;
+    background-color: #fff;
+    -webkit-animation: random 40s infinite;
+    animation: random 40s infinite;
+}
+@keyframes  random {
+    15% { background-color: lightblue; } 
+    30% { background-color: lightpink; }
+    60% { background-color: lightgray; }
+    75% { background-color: white; }  
+}

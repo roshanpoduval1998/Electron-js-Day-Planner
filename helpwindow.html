@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DayPlanner</title>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+</head>
+<body >
+    <link rel="stylesheet" type="text/css" href="mystyle2.css">
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo center">Help</a>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <div>
+                <label><b>Create task :</b>Ctrl+Shift+A</label><br>
+                <label><b>Clear Single task :</b>Double click on task</label><br>
+                <label><b>Clear All Tasks :</b>Ctrl+Shift+C</label><br>
+                <label><b>Quit :</b>Ctrl+Q</label><br> 
+                <a class="btn waves-effect waves-light" href="https://www.github.com/roshanpoduval1998/FormePy" onclick="Function()">Support</a>
+                <script>
+                   function Function(){
+                        const shell = require('electron').shell;
+
+                        // assuming $ is jQuery
+                        $(document).on('click', 'a[href^="http"]', function(event) {
+                            event.preventDefault();
+                            shell.openExternal(this.href);
+                        });
+                    }
+                </script>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

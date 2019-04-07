@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DayPlanner</title>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+</head>
+<body >
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo center">Add Task</a>
+        </div>
+    </nav>
+    <div class="container">
+        <form>
+            <div>
+                <label><br></br></label>
+                <textarea style="border:none" id="task"></textarea>
+                <label>Task</label>
+                <input type="text" id="item" autofocus>
+                <script>
+                var dt = new Date();
+                var dt = new Date();
+                document.getElementById("task").innerHTML = (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2)) +"       -        "+ (("0"+dt.getDate()).slice(-2)) +"/"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"/"+ (dt.getFullYear()) 
+                document.getElementById("task").disabled = true;
+                </script>
+            </div>
+            <button class="btn waves-effect waves-light" 
+            type="submit">Create Task</button>
+            
+        </form>
+    </div>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form')
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(){
+            const item = document.querySelector('#item').value;
+            ipcRenderer.send('item:add', item);
+            const task = document.querySelector('#task').value;
+            ipcRenderer.send('task:add', task);
+        }
+
+    </script>
+</body>
+</html>

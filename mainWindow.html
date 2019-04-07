@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>DayPlanner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <link rel="stylesheet" type="text/css" href="mainWindow.css">
+    <nav>
+        <div class="nav-wrapper">
+            <div w3-include-html="addWindow.html"></div> 
+            <a style="cursor: pointer;" class="brand-logo center"onclick="createAddWindow()">Create Task</a>
+
+            <script>
+                function createAddWindow(){
+                    alert("Press Ctrl+Shift+A to add task")
+                }
+            </script>
+        </div>
+    </nav>
+    <ul></ul>
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+        const ml = document.querySelector('ul');
+        //Add Items
+        ipcRenderer.on('item:add', function(e, item){
+            ul.className = 'collection'
+            const li = document.createElement('li');
+            li.className = 'collection-item'
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li)
+        });
+
+        ipcRenderer.on('task:add', function(e, task){
+            ml.className = 'collection'
+            const li = document.createElement('li');
+            li.className = 'collection-item'
+            const taskText = document.createTextNode(task);
+            li.appendChild(taskText);
+            ml.appendChild(li)
+        });
+
+        //Clear all items
+        ipcRenderer.on('item:clear', function(){
+            accelerator: process.platform == 'darwin' ? 'command+C' :
+            'Ctrl+Shift+C',
+            ul.innerHTML = " ";
+            if(ul.children.length == 0){
+                ul.className = '';
+            }
+        });
+
+        //Remove item
+        ul.addEventListener('dblclick', removeItem);
+
+        
+        function removeItem(e){ 
+            e.target.remove();
+            if(ul.children.length == 0){
+                ul.className = '';
+            }
+        }
+    </script>
+</body>
+</html>

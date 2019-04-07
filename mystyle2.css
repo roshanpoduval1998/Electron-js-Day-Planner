@@ -1,0 +1,15 @@
+body{
+     background-color: #fff;
+     -webkit-animation: random 50s infinite;
+     animation: random 50s infinite;
+}
+@keyframes  random {
+    15% { background-color: lightblue; } 
+    30% { background-color: lightpink; } 
+    45% { background-color: lightgreen; } 
+    60% { background-color: magenta; }
+    75% { background-color: white; }  
+}
+label{
+    font: 20px/4 Segoe UI, serif;
+}
